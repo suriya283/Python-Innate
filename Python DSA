@@ -1,0 +1,238 @@
+# Linked list
+
+class Node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+head=Node(0)
+head.next=Node(1)
+head.next.next=Node(2)
+
+current=head
+while current:
+    print(current.data,end="=>")
+    current=current.next
+print("none")
+
+
+class node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+node1=node(0)
+node2=node(1)
+node3=node(2)
+node4=node(3)
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+
+head=node1
+current=head
+while current:
+    print(current.data,end="=>")
+    current=current.next
+print("none")
+
+#Output
+
+0=>1=>2=>none
+0=>1=>2=>3=>none
+
+____________________________________________________________
+
+# operations in linked list
+
+
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class linkedList:
+    def __init__(self):
+        self.head=None
+    def create(self,data):
+        new_node=node(data)
+        temp=self.head
+        if self.head is None:
+            self.head=new_node
+            return
+        while temp.next:
+            temp=temp.next
+        temp.next=new_node
+    def insertAtStart(self,data):
+        new_node=node(data)
+        new_node.next=self.head
+        self.head=new_node
+    def insertAtEnd(self,data):
+        new_node=node(data)
+        current=self.head
+        while current.next:
+            current=current.next
+        current.next=new_node
+    def insertAtPosition(self,pos,data):
+        new_node=node(data)
+        if pos==0:
+            self.insertAtStart(data)
+            return
+        elif self.count()<pos:
+            self.insertAtEnd(data)
+            return
+        temp=self.head
+        count=0
+        while temp.next:
+            if count == pos-1:
+                break
+            temp=temp.next
+            count+=1
+        new_node.next=temp.next
+        temp.next=new_node
+    def count(self):
+        temp=self.head
+        count=0
+        while temp:
+            temp=temp.next
+            count+=1
+        return count
+    def findByValue(self,value):
+        temp=self.head
+        count=0
+        while temp:
+            if temp.data==value:
+                print(f"found the value {temp.data} in {count}th Position")
+                return
+            count+=1
+            temp=temp.next
+    def deleteByValue(self,value):
+        if head is None:
+            return
+        if self.head.data == value:
+            self.head=self.head.next
+            return
+        temp=self.head
+        while temp.next:
+            if temp.next.data==value:
+                temp.next=temp.next.next
+                print(f"{value} is found and delete")
+                return
+            temp=temp.next
+    def reverseList(self):
+        prev=None
+        temp=self.head
+        while temp:
+            next_node=temp.next
+            temp.next=prev
+            prev=temp
+            temp=next_node
+        self.head=prev
+    def traversal(self):
+        current=self.head
+        while current:
+            print(current.data,end="->")
+            current=current.next
+        print("None")
+original=linkedList()
+original.create(2)
+original.create(3)
+original.create(4)
+original.insertAtStart(1)
+original.insertAtEnd(5)
+original.insertAtPosition(2,10)
+original.deleteByValue(5)
+original.findByValue(5)
+original.reverseList()
+
+_____________________________________________________________
+
+# reverse a Linked list
+
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class linkedlist:
+    def __init__(self):
+        self.head=None
+    def push(self,new_data):
+        new_node=node(new_data)
+        new_node.next=self.head
+        self.head=new_node
+    def printlist(self):
+        current=self.head
+        while(current):
+            print(current.data,end=" ")
+            current=current.next
+ll=linkedlist()
+ll.push(20)
+ll.push(4)
+ll.push(15)
+ll.push(85)
+
+print("given linked list")
+ll.printlist()
+
+prev=None
+curr=ll.head
+while(curr is not None):
+    next=curr.next
+    curr.next=prev
+    prev=curr
+    curr=next
+ll.head=prev
+
+print("\n Reversed linked list:")
+ll.printlist()
+
+#Output
+
+given linked list
+85 15 4 20 
+Reversed linked list:
+20 4 15 85 
+
+____________________________________________________________________
+
+# Doubly linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+head = Node(10)
+head.next = Node(20)
+head.next.prev = head
+
+head.next.next = Node(30)
+head.next.next.prev = head.next
+
+head.next.next.next = Node(40)
+head.next.next.next.prev = head.next.next
+
+new_node = Node(50)
+current = head
+
+while current.next is not None:
+    current = current.next
+current.next = new_node
+new_node.prev = current
+
+head=head.next
+head.prev=None
+
+current = head
+while current is not None:
+    print(current.data, end=" <=> ")
+    current = current.next
+
+print("None")
+
+#Output
+
+20 <=> 30 <=> 40 <=> 50 <=> None
+
+__________________________________________________
+
+#
